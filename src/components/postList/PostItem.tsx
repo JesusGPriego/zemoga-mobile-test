@@ -4,6 +4,7 @@ import { Post } from '../../interfaces';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../navigation';
+import Colors from '../../constants/colors';
 type Props = {
   post: Post;
 };
@@ -30,7 +31,7 @@ const styles = StyleSheet.create({
   container: {
     margin: 8,
     borderRadius: 8,
-    backgroundColor: '#eff6f4',
+    backgroundColor: Colors.primary400,
     elevation: 4,
     shadowColor: 'black',
     shadowOffset: { width: 0, height: 2 },
@@ -44,7 +45,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     padding: 8,
     margin: 8,
-    color: '#2e524a',
+    color: Colors.primary700,
   },
   buttonPressed: {
     opacity: 0.75,

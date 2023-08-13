@@ -1,10 +1,7 @@
 import React from 'react';
 import { Text, View } from 'react-native';
+import { PostCard } from '../components/postDetail';
 
 export const PostScreen = () => {
-  return (
-    <View>
-      <Text>Post Detail screen</Text>
-    </View>
-  );
+  return <PostCard />;
 };

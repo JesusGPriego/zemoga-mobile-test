@@ -2,6 +2,7 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { HomeScreen } from '../screens';
 import { PostScreen } from '../screens';
+import Colors from '../constants/colors';
 export type RootStackParamList = {
   Home: { id: number } | undefined;
   Post: { id: number } | undefined;
@@ -13,7 +14,7 @@ export const Navigation = () => {
     <Stack.Navigator
       screenOptions={{
         headerStyle: {
-          backgroundColor: '#42756a',
+          backgroundColor: Colors.primary600,
         },
         headerTintColor: 'white',
       }}>
