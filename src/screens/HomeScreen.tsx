@@ -3,6 +3,7 @@ import { View, StyleSheet } from 'react-native';
 import { LoadingSpinner } from '../components/ui';
 import { usePosts } from '../hooks';
 import { PostList } from '../components/postList';
+import ListEmpty from '../components/ui/ListEmpty';
 
 export const HomeScreen = () => {
   const { posts, isLoading } = usePosts();
@@ -10,7 +11,9 @@ export const HomeScreen = () => {
     return <LoadingSpinner />;
   }
   return (
-    <View style={styles.container}>{posts && <PostList posts={posts} />}</View>
+    <View style={styles.container}>
+      {posts ? <PostList posts={posts} /> : <ListEmpty />}
+    </View>
   );
 };
 
