@@ -1,7 +1,7 @@
 import React from 'react';
 import { FlatList } from 'react-native';
 import { ListItem } from '.';
-import { Post } from '../../interfaces';
+import { Post } from '../../domain';
 
 type Props = {
   posts: Post[];

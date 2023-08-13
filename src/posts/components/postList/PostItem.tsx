@@ -1,19 +1,19 @@
 import React from 'react';
 import { View, Text, StyleSheet, Platform, Pressable } from 'react-native';
-import { Post } from '../../interfaces';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../../navigation';
-import Colors from '../../constants/colors';
-type Props = {
+import { RootStackParamList } from '../../../navigation';
+import { Post } from '../../domain';
+import { Colors } from '../../../constants/';
+interface Props {
   post: Post;
-};
+}
 
 export const ListItem = ({ post }: Props) => {
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const onPress = () => {
-    navigation.navigate('Post');
+    navigation.navigate('Post', post);
   };
 
   return (

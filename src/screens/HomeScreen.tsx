@@ -1,12 +1,12 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { LoadingSpinner } from '../components/ui';
-import { usePosts } from '../hooks';
-import { PostList } from '../components/postList';
 import ListEmpty from '../components/ui/ListEmpty';
+import { PostList } from '../posts/components/postList';
+import { useFetchPosts } from '../posts';
 
 export const HomeScreen = () => {
-  const { posts, isLoading } = usePosts();
+  const { posts, isLoading } = useFetchPosts();
   if (isLoading) {
     return <LoadingSpinner />;
   }

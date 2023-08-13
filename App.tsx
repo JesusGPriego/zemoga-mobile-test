@@ -2,7 +2,7 @@ import React from 'react';
 // import { StyleSheet } from 'react-native';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { Navigation } from './src/navigation';
-import Colors from './src/constants/colors';
+import { Colors } from './src/constants/';
 
 const MyTheme = {
   ...DefaultTheme,

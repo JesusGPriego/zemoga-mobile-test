@@ -1,4 +1,4 @@
-export interface Post {
+export interface RawPost {
   userId: number;
   id: number;
   title: string;
