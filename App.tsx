@@ -1,23 +1,24 @@
 import React from 'react';
-import {Text, View, StyleSheet} from 'react-native';
-
+// import { StyleSheet } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { Navigation } from './src/navigation';
 const App = () => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Zemoga Technical Test</Text>
-    </View>
+    <NavigationContainer>
+      <Navigation />
+    </NavigationContainer>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  text: {
-    fontSize: 25,
-  },
-});
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//   },
+//   text: {
+//     fontSize: 25,
+//   },
+// });
 
 export default App;
