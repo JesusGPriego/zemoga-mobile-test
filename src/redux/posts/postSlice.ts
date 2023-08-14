@@ -40,6 +40,16 @@ export const deletePost = createAsyncThunk(
     return postId;
   },
 );
+export const deleteAllNonFavoritePosts = createAsyncThunk(
+  'posts/deleteAll',
+  async (posts: Post[]) => {
+    posts.forEach(post => {
+      post.favorite === false &&
+        postDB.delete(`posts/${post.id}`).catch(error => console.log(error));
+    });
+    return true;
+  },
+);
 
 export const PostSlice = createSlice({
   name: 'posts',
@@ -67,6 +77,16 @@ export const PostSlice = createSlice({
       state.isLoading = false;
     });
     builder.addCase(deletePost.pending, state => {
+      state.isLoading = true;
+    });
+    builder.addCase(deleteAllNonFavoritePosts.fulfilled, state => {
+      const postsAfterdelete = state.posts.filter(
+        post => post.favorite === true,
+      );
+      state.posts = postsAfterdelete;
+      state.isLoading = false;
+    });
+    builder.addCase(deleteAllNonFavoritePosts.pending, state => {
       state.isLoading = true;
     });
   },

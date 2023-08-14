@@ -16,7 +16,6 @@ import { Post } from '../../domain';
 import { Colors } from '../../../constants';
 import { Ionicon } from '../../../components/ui';
 import { toggleFavorite } from '../../../redux/posts';
-import { Popup } from '../../../components/ui/Popup';
 interface Props {
   post: Post;
 }
