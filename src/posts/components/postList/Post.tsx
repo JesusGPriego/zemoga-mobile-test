@@ -17,6 +17,13 @@ export const ListItem = ({ post }: Props) => {
     navigation.navigate('Post', post);
   };
 
+  const toggleFavorite = () => {
+    console.log('toggle favorite');
+  };
+  const deletePost = () => {
+    console.log('delete post');
+  };
+
   return (
     <View style={styles.container}>
       <Pressable
@@ -27,10 +34,8 @@ export const ListItem = ({ post }: Props) => {
             <Text style={styles.title}>{post.title}</Text>
           </View>
           <View style={styles.iconsContainer}>
-            <View>
-              <Ionicon name="star-outline" size={24} />
-            </View>
-            <Ionicon name="trash" size={24} />
+            <Ionicon name="star-outline" size={24} onPress={toggleFavorite} />
+            <Ionicon name="trash" size={24} onPress={deletePost} />
           </View>
         </View>
       </Pressable>
