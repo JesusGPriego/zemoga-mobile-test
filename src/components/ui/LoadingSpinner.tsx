@@ -1,11 +1,12 @@
 import React from 'react';
 import { View, ActivityIndicator, StyleSheet } from 'react-native';
+import { Colors } from '../../constants';
 
 interface Props {
   color?: string;
 }
 
-export const LoadingSpinner = ({ color = 'blue' }: Props) => {
+export const LoadingSpinner = ({ color = Colors.primary700 }: Props) => {
   return (
     <View style={styles.loading}>
       <ActivityIndicator color={color} size={60} />
