@@ -6,23 +6,24 @@ import { RootStackParamList } from '../../../navigation';
 import { Post } from '../../domain';
 import { Colors } from '../../../constants';
 import { Ionicon } from '../../../components/ui';
+import { useAppDistpach } from '../../../redux';
+import { toggleFavorite } from '../../../redux/posts';
 interface Props {
   post: Post;
 }
 
 export const ListItem = ({ post }: Props) => {
+  const dispatch = useAppDistpach();
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const onPress = () => {
     navigation.navigate('Post', post);
   };
+  const togglePostFavorite = () => {
+    dispatch(toggleFavorite(post.id));
+  };
 
-  const toggleFavorite = () => {
-    console.log('toggle favorite');
-  };
-  const deletePost = () => {
-    console.log('delete post');
-  };
+  const deletePost = () => {};
 
   return (
     <View style={styles.container}>
@@ -34,7 +35,12 @@ export const ListItem = ({ post }: Props) => {
             <Text style={styles.title}>{post.title}</Text>
           </View>
           <View style={styles.iconsContainer}>
-            <Ionicon name="star-outline" size={24} onPress={toggleFavorite} />
+            <Ionicon
+              name={post.favorite ? 'star' : 'star-outline'}
+              size={24}
+              color={post.favorite ? Colors.accent500 : undefined}
+              onPress={togglePostFavorite}
+            />
             <Ionicon name="trash" size={24} onPress={deletePost} />
           </View>
         </View>

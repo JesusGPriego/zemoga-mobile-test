@@ -5,10 +5,12 @@ export class Post {
   id: number;
   title: string;
   body: string;
-  constructor({ id, userId, title, body }: RawPost) {
+  favorite?: boolean;
+  constructor({ id, userId, title, body, favorite = false }: RawPost) {
     this.id = id;
     this.userId = userId;
     this.title = title;
     this.body = body;
+    this.favorite = favorite;
   }
 }

@@ -1,7 +1,8 @@
 import React from 'react';
-// import { StyleSheet } from 'react-native';
+import { Provider } from 'react-redux';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { Navigation } from './src/navigation';
+import { store } from './src/redux';
 import { Colors } from './src/constants/';
 
 const MyTheme = {
@@ -14,9 +15,11 @@ const MyTheme = {
 
 const App = () => {
   return (
-    <NavigationContainer theme={MyTheme}>
-      <Navigation />
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer theme={MyTheme}>
+        <Navigation />
+      </NavigationContainer>
+    </Provider>
   );
 };
 
