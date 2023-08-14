@@ -33,6 +33,14 @@ export const fetchPosts = createAsyncThunk('posts/fetch', async () => {
   return posts;
 });
 
+export const deletePost = createAsyncThunk(
+  'posts/delete',
+  async (postId: number) => {
+    await postDB.delete(`posts/${postId}`);
+    return postId;
+  },
+);
+
 export const PostSlice = createSlice({
   name: 'posts',
   initialState,
@@ -49,6 +57,16 @@ export const PostSlice = createSlice({
     });
 
     builder.addCase(fetchPosts.pending, state => {
+      state.isLoading = true;
+    });
+    builder.addCase(deletePost.fulfilled, (state, action) => {
+      const postsAfterdelete = state.posts.filter(
+        post => action.payload !== post.id,
+      );
+      state.posts = postsAfterdelete;
+      state.isLoading = false;
+    });
+    builder.addCase(deletePost.pending, state => {
       state.isLoading = true;
     });
   },

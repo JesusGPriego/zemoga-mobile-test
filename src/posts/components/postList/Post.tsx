@@ -3,10 +3,11 @@ import { View, Text, StyleSheet, Platform, Pressable } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../../navigation';
+import { useAppDistpach } from '../../../redux';
+import { deletePost } from '../../../redux/posts';
 import { Post } from '../../domain';
 import { Colors } from '../../../constants';
 import { Ionicon } from '../../../components/ui';
-import { useAppDistpach } from '../../../redux';
 import { toggleFavorite } from '../../../redux/posts';
 interface Props {
   post: Post;
@@ -23,7 +24,10 @@ export const ListItem = ({ post }: Props) => {
     dispatch(toggleFavorite(post.id));
   };
 
-  const deletePost = () => {};
+  const deletePostHandler = () => {
+    console.log('deleting post');
+    dispatch(deletePost(post.id));
+  };
 
   return (
     <View style={styles.container}>
@@ -41,7 +45,7 @@ export const ListItem = ({ post }: Props) => {
               color={post.favorite ? Colors.accent500 : undefined}
               onPress={togglePostFavorite}
             />
-            <Ionicon name="trash" size={24} onPress={deletePost} />
+            <Ionicon name="trash" size={24} onPress={deletePostHandler} />
           </View>
         </View>
       </Pressable>

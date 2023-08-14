@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { View, StyleSheet } from 'react-native';
-// import { LoadingSpinner } from '../components/ui';
+
 import ListEmpty from '../components/ui/ListEmpty';
 import { PostList } from '../posts/components/postList';
 import { useAppDistpach, useAppSelector } from '../redux';
@@ -15,12 +15,10 @@ export const HomeScreen = () => {
   }, [dispatch]);
   const { posts, isLoading } = useAppSelector(state => state.posts);
 
-  if (isLoading) {
-    return <LoadingSpinner />;
-  }
   return (
     <View style={styles.container}>
-      {posts ? <PostList posts={posts} /> : <ListEmpty />}
+      {isLoading && <LoadingSpinner />}
+      <View>{posts ? <PostList posts={posts} /> : <ListEmpty />}</View>
     </View>
   );
 };
