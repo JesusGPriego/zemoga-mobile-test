@@ -1,5 +1,12 @@
 import React from 'react';
-import { View, Text, StyleSheet, Platform, Pressable } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Platform,
+  Pressable,
+  Alert,
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../../navigation';
@@ -9,6 +16,7 @@ import { Post } from '../../domain';
 import { Colors } from '../../../constants';
 import { Ionicon } from '../../../components/ui';
 import { toggleFavorite } from '../../../redux/posts';
+import { Popup } from '../../../components/ui/Popup';
 interface Props {
   post: Post;
 }
@@ -24,10 +32,15 @@ export const ListItem = ({ post }: Props) => {
     dispatch(toggleFavorite(post.id));
   };
 
-  const deletePostHandler = () => {
-    console.log('deleting post');
-    dispatch(deletePost(post.id));
-  };
+  const triggerPopup = () =>
+    Alert.alert('Delete post', 'Press OK to delete this post.', [
+      {
+        text: 'Cancel',
+        onPress: () => {},
+        style: 'cancel',
+      },
+      { text: 'OK', onPress: () => dispatch(deletePost(post.id)) },
+    ]);
 
   return (
     <View style={styles.container}>
@@ -45,7 +58,7 @@ export const ListItem = ({ post }: Props) => {
               color={post.favorite ? Colors.accent500 : undefined}
               onPress={togglePostFavorite}
             />
-            <Ionicon name="trash" size={24} onPress={deletePostHandler} />
+            <Ionicon name="trash" size={24} onPress={triggerPopup} />
           </View>
         </View>
       </Pressable>
