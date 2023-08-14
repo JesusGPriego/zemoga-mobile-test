@@ -1,2 +1,2 @@
-export * from './PostItem';
+export * from './Post';
 export * from './PostList';

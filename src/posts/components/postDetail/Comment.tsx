@@ -1,32 +1,24 @@
 import React from 'react';
 import { View, Text, StyleSheet, Platform } from 'react-native';
+import { Comment } from '../../domain';
 import { Colors } from '../../../constants';
-import { Divider } from '../../../components/ui';
 
 interface Props {
-  title: string;
-  description: string;
-  userName: string;
+  comment: Comment;
 }
 
-export const PostCard = ({ title, description, userName }: Props) => {
+export const CommentListItem = ({ comment }: Props) => {
   return (
     <View style={styles.container}>
-      <View style={styles.PostCard}>
-        <Text style={styles.title}>{title}</Text>
-        <Divider />
-        <Text style={styles.description}>{description}</Text>
-        <Text style={styles.author}>{userName}</Text>
-      </View>
+      <Text style={styles.body}>{comment.body}</Text>
+      <Text style={styles.author}>{comment.name}</Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-  },
-  PostCard: {
+    margin: 8,
     borderRadius: 8,
     backgroundColor: Colors.primary400,
     elevation: 4,
@@ -38,13 +30,14 @@ const styles = StyleSheet.create({
   },
   title: {
     fontWeight: 'bold',
-    textAlign: 'left',
-    fontSize: 20,
-    padding: 12,
+    textAlign: 'justify',
+    fontSize: 18,
+    padding: 8,
+    margin: 8,
     color: Colors.primary700,
   },
-  description: {
-    textAlign: 'left',
+  body: {
+    textAlign: 'justify',
     fontSize: 18,
     padding: 8,
     margin: 8,
@@ -58,10 +51,5 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     marginHorizontal: 22,
     color: Colors.primary700,
-  },
-  divider: {
-    borderBottomWidth: 1,
-    borderBottomColor: Colors.primary700,
-    marginHorizontal: 12,
   },
 });

@@ -4,14 +4,14 @@ import { Comment } from '../domain';
 import { RawComment } from '../interfaces';
 
 export const useFetchPostComments = (id: number) => {
-  const [comments, setPosts] = useState<Comment[]>();
+  const [comments, setComments] = useState<Comment[]>();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const getComments = async () => {
-      const resp = await postDB.get<RawComment[]>(`posts/${id}`);
+      const resp = await postDB.get<RawComment[]>(`posts/${id}/comments`);
 
-      setPosts(resp.data);
+      setComments(resp.data);
       setIsLoading(false);
     };
     id && getComments();
